@@ -1,0 +1,2 @@
+import { Menu, X } from 'lucide-react';
+export default function Navbar({title,user,menuOpen,onToggleMenu}){return <header className="topbar"><button className="mobile-menu" onClick={onToggleMenu} aria-label="Toggle menu">{menuOpen?<X/>:<Menu/>}</button><div><span className="breadcrumb">HARVEST2MARKET <span>/</span> {title.toUpperCase()}</span><h1>{title}</h1></div><div className="top-user"><span className="status-dot"/> Sample market data <span className="user-avatar">{user?.full_name?.slice(0,1)?.toUpperCase()}</span></div></header>}
