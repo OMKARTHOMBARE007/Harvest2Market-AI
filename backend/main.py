@@ -27,7 +27,14 @@ ALGORITHM = "HS256"
 password_hash = PasswordHash.recommended()
 bearer = HTTPBearer(auto_error=False)
 app = FastAPI(title="Harvest2Market AI API", version="1.0.0", description="Student demonstration API. Market rows and estimates are illustrative.")
-origins = [x.strip() for x in os.getenv("FRONTEND_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173").split(",") if x.strip()]
+origins = [
+    x.strip()
+    for x in os.getenv(
+        "FRONTEND_ORIGINS",
+        "http://localhost:5173,http://127.0.0.1:5173,https://harvest2-market-ai.vercel.app"
+    ).split(",")
+    if x.strip()
+]
 app.add_middleware(CORSMiddleware, allow_origins=origins, allow_credentials=True, allow_methods=["GET", "POST", "PUT"], allow_headers=["Authorization", "Content-Type"])
 
 def seed_prices(db: Session):
